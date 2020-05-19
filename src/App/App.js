@@ -1,6 +1,4 @@
 import React from 'react';
-
-
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -45,12 +43,12 @@ class App extends React.Component {
       }
       return componentToLoad;
     };
-    
+
     return (
       <div className="App">
-        <MyNavbar />
-        {loadComponent()}
+        <MyNavbar authed={authed}/>
         <h2 className="mt-3">React Pinterest</h2>
+        {loadComponent()}
       </div>
     );
   }
