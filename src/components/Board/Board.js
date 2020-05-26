@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './Board.scss';
+
 import boardShape from '../../helpers/propz/boardShape';
 
 class Board extends React.Component {
@@ -31,8 +33,8 @@ class Board extends React.Component {
             <h5 className="card-title">{board.name}</h5>
             <p className="card-text">{board.description}</p>
             <div className="inline-block">
-              <button className="btn btn-danger m-2" onClick={this.openSingleBoardEvent}><i class="fas fa-search"></i></button>
-              <button className="btn btn-danger m-2" onClick={this.deleteBoardEvent}><i class="fas fa-dumpster"></i></button>
+              <button className="btn btn-danger m-2" onClick={this.openSingleBoardEvent}><i className="fas fa-search"></i></button>
+              <button className="btn btn-danger m-2" onClick={this.deleteBoardEvent}><i className="fas fa-dumpster"></i></button>
             </div>
           </div>
         </div>
