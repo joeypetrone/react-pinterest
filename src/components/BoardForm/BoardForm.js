@@ -45,7 +45,7 @@ class BoardForm extends React.Component {
       <div className="BoardForm">
         <form className="col-6 offset-3 bg-white rounded mb-3 p-2">
           <div className="form-group">
-          <label for="board-name">Name</label>
+          <label htmlFor="board-name">Name</label>
           <input
             type="text"
             className="form-control"
@@ -56,7 +56,7 @@ class BoardForm extends React.Component {
             />
           </div>
           <div className="form-group">
-          <label for="board-description">Description</label>
+          <label htmlFor="board-description">Description</label>
           <input
             type="text"
             className="form-control"
