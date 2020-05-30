@@ -10,6 +10,7 @@ class Board extends React.Component {
     board: boardShape.boardShape,
     setSingleBoard: PropTypes.func.isRequired,
     removeBoard: PropTypes.func.isRequired,
+    editABoard: PropTypes.func.isRequired,
   }
 
   openSingleBoardEvent = (e) => {
@@ -24,6 +25,12 @@ class Board extends React.Component {
     removeBoard(board.id);
   }
 
+  editBoardEvent = (e) => {
+    e.preventDefault();
+    const { editABoard, board } = this.props;
+    editABoard(board);
+  }
+
   render() {
     const { board } = this.props;
     return (
@@ -34,6 +41,7 @@ class Board extends React.Component {
             <p className="card-text">{board.description}</p>
             <div className="inline-block">
               <button className="btn btn-danger m-2" onClick={this.openSingleBoardEvent}><i className="fas fa-search"></i></button>
+              <button className="btn btn-danger m-2" onClick={this.editBoardEvent}><i className="fas fa-pencil-alt"></i></button>
               <button className="btn btn-danger m-2" onClick={this.deleteBoardEvent}><i className="fas fa-dumpster"></i></button>
             </div>
           </div>
