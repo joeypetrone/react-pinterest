@@ -19,6 +19,7 @@ class BoardContainer extends React.Component {
   state = {
     boards: [],
     formOpen: false,
+    editBoard: {},
   }
 
   getAllBoards = () => {
@@ -48,17 +49,31 @@ class BoardContainer extends React.Component {
       .catch((err) => console.error('unable to save board: ', err));
   }
 
+  putBoard = (boardId, updatedBoard) => {
+    boardsData.updateBoard(boardId, updatedBoard)
+      .then(() => {
+        this.getAllBoards();
+        this.setState({ formOpen: false, editBoard: {} });
+      })
+      .catch((err) => console.error('unable to update board', err));
+  }
+
+  editABoard = (board) => {
+    this.setState({ formOpen: true, editBoard: board });
+  }
+
+
   render() {
-    const { boards, formOpen } = this.state;
+    const { boards, formOpen, editBoard } = this.state;
     const { setSingleBoard } = this.props;
 
-    const makeBaords = boards.map((board) => <Board key={board.id} board={board} setSingleBoard={setSingleBoard} removeBoard={this.removeBoard}/>);
+    const makeBaords = boards.map((board) => <Board key={board.id} editABoard={this.editABoard} board={board} setSingleBoard={setSingleBoard} removeBoard={this.removeBoard}/>);
 
     return (
       <div className="BoardContainer">
         <h2>Boards</h2>
         <button className="btn btn-danger" onClick={() => this.setState({ formOpen: true })}><i className="fas fa-plus"></i></button>
-        { formOpen ? <BoardForm saveNewBoard={this.saveNewBoard}/> : '' }
+        { formOpen ? <BoardForm saveNewBoard={this.saveNewBoard} putBoard={this.putBoard} board={editBoard}/> : '' }
         <div className="d-flex flex-wrap">
           {makeBaords}
         </div>
